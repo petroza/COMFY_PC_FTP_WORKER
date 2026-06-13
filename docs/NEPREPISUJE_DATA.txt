@@ -1,0 +1,2 @@
+Tento update ZIP záměrně neobsahuje config.php, db.sqlite, cache data, uploads ani outputs.
+Je určený pro nahrání přes existující FTP složku ComfyW bez přepsání databáze a osobního nastavení.

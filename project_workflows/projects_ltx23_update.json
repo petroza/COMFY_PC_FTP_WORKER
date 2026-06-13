@@ -1,0 +1,188 @@
+[
+  {
+    "id": "ltx23_i2v",
+    "name": "LTX 2.3 nový model i2v / 1 PICT",
+    "file": "workflows/ltx23_i2v_template.json",
+    "created_at": "2026-06-08T00:00:00",
+    "mapping": {
+      "image_node": "269",
+      "image_input": "image",
+      "prompt_node": "320:319",
+      "prompt_input": "value",
+      "negative_node": "320:313",
+      "negative_input": "text",
+      "width_node": "320:312",
+      "width_input": "value",
+      "height_node": "320:299",
+      "height_input": "value",
+      "fps_node": "320:300",
+      "fps_input": "value",
+      "seconds_node": "320:301",
+      "seconds_input": "value",
+      "seed_nodes": [
+        "320:276",
+        "320:277"
+      ],
+      "seed_input": "noise_seed",
+      "seed_offset": 1009,
+      "filename_node": "75",
+      "filename_input": "filename_prefix",
+      "filename_prefix": "video/ComfyW_LTX_2_3_i2v_",
+      "cfg_nodes": [
+        "320:282",
+        "320:314"
+      ],
+      "cfg_input": "cfg",
+      "motion_nodes": [
+        "320:288",
+        "320:296"
+      ],
+      "motion_input": "strength",
+      "steps_nodes": [],
+      "steps_input": "steps",
+      "sampler_nodes": [
+        "320:280",
+        "320:291"
+      ],
+      "sampler_input": "sampler_name",
+      "motion_mode": "ltx_i2v_official_locked",
+      "image_strength_nodes": [
+        "320:296",
+        "320:288"
+      ],
+      "image_strength_input": "strength",
+      "token_node": "320:325",
+      "token_input": "max_length",
+      "prompt_enhance_node": "320:328",
+      "prompt_enhance_input": "value",
+      "frame_hold_protection": "old_app_solution_hard_guard",
+      "camera_prompting": "explicit_camera_directive_repeated",
+      "protected_bypass_nodes": {
+        "320:288": [
+          "320:302",
+          0
+        ],
+        "320:296": [
+          "320:302",
+          0
+        ]
+      },
+      "mode": "1pict"
+    },
+    "defaults": {
+      "frame_hold_mode": "strong",
+      "ltx23_image_hold": "official_template_exact_0.7_1.0"
+    },
+    "workflow": "workflows/ltx23_i2v_template.json",
+    "ui_workflow": "workflows/video_ltx2_3X_ui_workflow.json"
+  },
+  {
+    "id": "ltx23_flf2v",
+    "name": "LTX 2.3 první + poslední frejm / 2 PICT",
+    "file": "workflows/ltx23_flf2v_template.json",
+    "created_at": "2026-06-09T00:00:00",
+    "mapping": {
+      "mode": "2pict",
+      "image_node": "31",
+      "image_input": "image",
+      "image2_node": "39",
+      "image2_input": "image",
+      "prompt_node": "129:128",
+      "prompt_input": "text",
+      "negative_node": "129:112",
+      "negative_input": "text",
+      "width_node": "129:113",
+      "width_input": "value",
+      "height_node": "129:98",
+      "height_input": "value",
+      "fps_node": "129:114",
+      "fps_input": "value",
+      "seconds_node": "129:102",
+      "seconds_input": "value",
+      "seed_nodes": [
+        "129:100"
+      ],
+      "seed_input": "noise_seed",
+      "seed_offset": 1009,
+      "filename_node": "68",
+      "filename_input": "filename_prefix",
+      "filename_prefix": "video/ComfyW_LTX_2_3_flf2v_",
+      "cfg_nodes": [
+        "129:116"
+      ],
+      "cfg_input": "cfg",
+      "motion_nodes": [],
+      "motion_input": "strength",
+      "motion_mode": "ltx_flf2v",
+      "image_strength_nodes": [],
+      "image_strength_input": "strength",
+      "token_node": "",
+      "token_input": "",
+      "prompt_enhance_node": "",
+      "prompt_enhance_input": "",
+      "steps_nodes": [],
+      "steps_input": "steps",
+      "sampler_nodes": [],
+      "sampler_input": "sampler_name"
+    },
+    "ui_workflow": "workflows/video_ltx2_3_flf2v_image_to_image.json"
+  },
+  {
+    "id": "flux2_edit",
+    "name": "🖌️ PHOTO EDIT / Flux.2 úprava fotky",
+    "description": "Flux.2 Dev úprava jedné fotky podle promptu. Výstup je obrázek, ne video.",
+    "file": "workflows/flux2_edit_template.json",
+    "created_at": "2026-06-12T00:00:00",
+    "sort_order": 30,
+    "mapping": {
+      "mode": "photo_edit",
+      "output": "image",
+      "image_node": "46",
+      "image_input": "image",
+      "prompt_node": "68:6",
+      "prompt_input": "text",
+      "seed_nodes": [
+        "68:25"
+      ],
+      "seed_input": "noise_seed",
+      "cfg_nodes": [
+        "68:26"
+      ],
+      "cfg_input": "guidance",
+      "steps_normal_node": "68:91",
+      "steps_turbo_node": "68:90",
+      "turbo_switch_node": "68:94",
+      "turbo_switch_input": "value",
+      "filename_node": "9",
+      "filename_input": "filename_prefix",
+      "filename_prefix": "ComfyW_Flux2_edit_"
+    }
+  },
+  {
+    "id": "firered_edit",
+    "name": "🖌️ PHOTO EDIT 2 / FireRed Qwen úprava fotky",
+    "description": "FireRed Image Edit 1.1 (Qwen) úprava jedné fotky podle promptu. Výstup je obrázek. Kroky ≤ 10 zapnou Lightning LoRA.",
+    "file": "workflows/firered_edit_template.json",
+    "created_at": "2026-06-12T00:00:00",
+    "sort_order": 31,
+    "mapping": {
+      "mode": "photo_edit",
+      "output": "image",
+      "image_node": "143",
+      "image_input": "image",
+      "prompt_node": "192:187",
+      "prompt_input": "prompt",
+      "seed_nodes": [
+        "192:189"
+      ],
+      "seed_input": "seed",
+      "steps_normal_node": "192:174",
+      "steps_turbo_node": "192:177",
+      "turbo_switch_node": "192:186",
+      "turbo_switch_input": "value",
+      "filename_node": "9",
+      "filename_input": "filename_prefix",
+      "filename_prefix": "ComfyW_FireRed_edit_"
+    }
+  }
+]

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ComfyW LTX 2.3</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#070707;color:#eee;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;min-height:100dvh;display:grid;place-items:center;padding:24px}.box{width:100%;max-width:920px;border:1px solid #242424;background:radial-gradient(circle at 18% 0,#202020 0,#111 38%,#080808 100%);border-radius:30px;padding:34px;box-shadow:0 30px 90px #000}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:28px}.brand{font-weight:950;font-size:42px;letter-spacing:-.065em;line-height:.95}.tag{font-family:Consolas,ui-monospace,monospace;color:#7cff9a;font-size:12px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}.sub{color:#aaa;line-height:1.55;max-width:650px;margin:0 0 24px}.cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.card{border:1px solid #282828;background:#101010cc;border-radius:22px;padding:20px;min-height:158px;display:flex;flex-direction:column;justify-content:space-between}.card b{font-size:18px;letter-spacing:-.02em}.card span{display:block;color:#888;font-size:13px;line-height:1.45;margin-top:8px}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:14px;padding:12px 15px;font-weight:850;background:#eaeaea;color:#050505;margin-top:16px}.ghost{background:#151515;color:#eee;border:1px solid #343434}.warn{color:#999;font-size:12px;margin-top:18px}.warn code{color:#ddd;background:#141414;border:1px solid #292929;border-radius:8px;padding:2px 6px}@media(max-width:820px){.cards{grid-template-columns:1fr}.brand{font-size:34px}.box{padding:24px}.top{display:block}.tag{margin-top:10px}}
+</style>
+</head>
+<body>
+<main class="box">
+  <div class="top">
+    <div class="brand">ComfyW<br>LTX 2.3</div>
+    <div class="tag">FULL CLEAN FTP</div>
+  </div>
+  <p class="sub">Kompletní čistá FTP verze pro ovládání ComfyUI. Obsahuje LTX 2.3 režim 1 PICT, 2 PICT první/poslední frejm, nový worker a reálnější stav renderu.</p>
+  <section class="cards">
+    <div class="card"><div><b>Otevřít aplikaci</b><span>Hlavní webové rozhraní ComfyW.</span></div><a class="btn" href="app.php">Otevřít</a></div>
+    <div class="card"><div><b>Stáhnout worker</b><span>Po přihlášení stáhneš nový worker ZIP pro lokální ComfyUI.</span></div><a class="btn ghost" href="download_worker.php">Download</a></div>
+    <div class="card"><div><b>Admin</b><span>Správa projektů, uživatelů a workerů.</span></div><a class="btn ghost" href="admin.php">Admin</a></div>
+  </section>
+  <div class="warn">Čistá databáze už má nové LTX projekty připravené. Soubor <code>UPDATE_LTX23_FTP.php</code> je jen nouzový a můžeš ho po nahrání smazat.</div>
+</main>
+</body>
+</html>

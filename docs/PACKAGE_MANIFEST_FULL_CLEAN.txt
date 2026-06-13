@@ -1,0 +1,14 @@
+ComfyW FTP LTX 2.3 FULL CLEAN
+Vytvořeno: 2026-06-09 09:33:58
+
+Základ: stare comfy ftp(5).zip
+Overlay: ComfyW_LOCAL_DIRECT_v11_1PICT_2PICT_REAL_STATUS_WS403_FIXED(3).zip / připravený FTP update
+
+Obsah:
+- kompletní PHP FTP aplikace
+- config.php a db.sqlite
+- čistá databáze bez starých renderů a cache
+- projekty: LTX 2.3 1 PICT a LTX 2.3 2 PICT
+- nový worker_comfy.py
+- workflow JSONy
+- root index.html i ComfyW/index.html/index.php

@@ -1,0 +1,29 @@
+Options -Indexes
+DirectoryIndex index.html index.php comfy.php
+
+# Chraň konfigy, databázi, tokeny, dokumentaci, skripty a dočasné soubory.
+<FilesMatch "^(config\.php|db\.sqlite|README.*|NASADIT.*|.*\.(sqlite|db|ini|env|py|pyc|bat|cmd|ps1|log|lock|bak|old|tmp|txt|md|json|zip))$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Zákaz přístupu k dotfiles kromě tohoto pravidla obslouženého Apachem.
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "same-origin"
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+</IfModule>

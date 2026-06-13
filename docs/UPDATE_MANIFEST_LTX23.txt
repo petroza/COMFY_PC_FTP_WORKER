@@ -1,0 +1,22 @@
+ComfyW FTP update — LTX 2.3
+
+Obsah:
+- api.php: podpora druhého vstupního obrázku pro 2 PICT / FLF2V, input2_url, bezpečné mazání obou vstupů.
+- app.php: UI pro výběr prvního a posledního frejmu, detekce 2 PICT projektu, blokace batch režimu pro 2 PICT.
+- worker_comfy.py: nový LTX 2.3 workflow patcher, 1 PICT image-hold ochrana, 2 PICT first/last frame, autofix názvů modelů podle ComfyUI, reálnější stav renderu z node typů.
+- workflows/: nové LTX 2.3 API workflowy z lokální verze.
+- project_workflows/projects_ltx23_update.json: definice projektů.
+- UPDATE_LTX23_FTP.php: jednorázová migrace DB projektů.
+
+V balíčku záměrně není:
+- db.sqlite
+- cache/*.json
+- uploads/*
+- outputs/*
+
+Postup:
+1) Zálohuj aktuální FTP složku ComfyW.
+2) Nahraj obsah tohoto ZIPu přes existující ComfyW.
+3) Přihlas se jako admin a otevři UPDATE_LTX23_FTP.php.
+4) Po hlášce „Update hotový“ soubor UPDATE_LTX23_FTP.php smaž.
+5) Stáhni nový worker ZIP z webové aplikace a spusť ho u ComfyUI.

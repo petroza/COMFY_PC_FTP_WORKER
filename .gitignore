@@ -1,0 +1,50 @@
+# Ostrá konfigurace s heslem a pepperem — NIKDY necommitovat.
+# V repu je jen vzor config.example.php.
+config.php
+config.local.php
+
+# Databáze a její WAL/SHM soubory
+db.sqlite
+db.sqlite-wal
+db.sqlite-shm
+*.sqlite
+*.db
+
+# Runtime data (obsah složek se negeneruje do gitu, struktura ano)
+cache/*
+tmp/*
+tmp_worker/*
+outputs/*
+downloads/*
+uploads/*
+!cache/.htaccess
+!tmp/.htaccess
+!tmp_worker/.htaccess
+!downloads/.htaccess
+!uploads/.htaccess
+!cache/.gitkeep
+!tmp/.gitkeep
+!tmp_worker/.gitkeep
+!outputs/.gitkeep
+!downloads/.gitkeep
+!uploads/.gitkeep
+
+# Generované balíčky, zálohy, logy
+*.zip
+*.log
+*.bak
+*.backup
+*.old
+*.tmp
+*.sql
+app_settings.json
+
+# Prostředí a systémové soubory
+.env
+.env.*
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+Thumbs.db
