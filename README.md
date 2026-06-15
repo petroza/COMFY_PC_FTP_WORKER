@@ -1,5 +1,7 @@
 # ComfyWorkerOnline LTX — PZ COMFY VIDEO REMOTE
 
+![ComfyW — web panel](screenshot.png)
+
 Self-hosted PHP web panel + local Python worker bridge for ComfyUI / LTX image-to-video workflows.
 
 Webová aplikace v PHP (běží na obyčejném sdíleném hostingu) + Python worker (běží doma na PC s ComfyUI a GPU). Web drží frontu jobů, worker si je stahuje, renderuje v ComfyUI (LTX 2.3 image-to-video) a hotová videa nahrává zpátky na web.
