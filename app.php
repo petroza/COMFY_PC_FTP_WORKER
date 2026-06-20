@@ -468,6 +468,13 @@ body.app-cs #appLangCsBtn,body.app-en #appLangEnBtn{display:none!important}
 .acc[data-key="motion"] .grid3.tight .field label{min-height:28px;display:flex;align-items:flex-end;line-height:1.15;margin-bottom:7px}
 .acc[data-key="motion"] select,.acc[data-key="motion"] input{height:42px;min-height:42px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:1180px){.acc[data-key="motion"] .grid3.tight{grid-template-columns:1fr}}
+/* Horní lišta: stat chipy drží v jedné řádce a na úzkém monitoru se vodorovně posouvají místo ošklivého skládání */
+.stats{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;max-width:100%;-webkit-overflow-scrolling:touch}
+.stats::-webkit-scrollbar{display:none}
+.stats .chip{flex:0 0 auto}
+/* Detail jobu: akční tlačítka se na úzkém okně zalomí, ať se nic neuřízne */
+.panel-head{flex-wrap:wrap;row-gap:8px}
+@media(max-width:900px){.panel-head .btn{flex:1 1 auto;min-width:calc(50% - 5px)}}
 </style>
 </head>
 <body>
@@ -485,7 +492,7 @@ body.app-cs #appLangCsBtn,body.app-en #appLangEnBtn{display:none!important}
 <input type="hidden" id="selectedProjectId" value="">
 <form id="jobForm">
 <div class="form-accordion">
-  <section class="acc open" data-key="basic">
+  <section class="acc open closed" data-key="basic">
     <button type="button" class="acc-head" onclick="toggleAcc(this)"><span>01 Základ</span><b>▾</b></button>
     <div class="acc-body">
       <div class="mode-tabs"><button type="button" class="mode-btn active" id="mode1Btn" onclick="setPictModeFTP('1')">1 PICT</button><button type="button" class="mode-btn" id="mode2Btn" onclick="setPictModeFTP('2')">2 PICT</button></div>
@@ -494,7 +501,7 @@ body.app-cs #appLangCsBtn,body.app-en #appLangEnBtn{display:none!important}
       <div class="image-grid" id="imageGrid"><div id="imageSection" class="field image-field"><label id="image1Label">Vstupní obrázek</label><div class="preview clickable-preview empty-preview" id="imgPreview" title="Klepni pro výběr / změnu fotky" role="button" aria-label="Vybrat nebo změnit vstupní obrázek"><div class="empty-upload"><div class="empty-upload-icon">＋</div><div>Vybrat nebo přetáhnout obrázek</div><small>JPG / PNG / WEBP</small></div></div><input id="imageInput" type="file" name="image" accept="image/png,image/jpeg,image/webp" multiple hidden></div><div id="image2Section" class="field image-field hidden"><label>Poslední frejm</label><div class="preview clickable-preview empty-preview" id="imgPreview2" title="Klepni pro výběr posledního frejmu" role="button" aria-label="Vybrat poslední frejm"><div class="empty-upload"><div class="empty-upload-icon">＋</div><div>Vybrat poslední frejm</div><small>JPG / PNG / WEBP</small></div></div><input id="imageInput2" type="file" name="image2" accept="image/png,image/jpeg,image/webp" hidden></div></div>
     </div>
   </section>
-  <section class="acc open" data-key="prompt">
+  <section class="acc open closed" data-key="prompt">
     <button type="button" class="acc-head" onclick="toggleAcc(this)"><span>02 Prompt</span><b>▾</b></button>
     <div class="acc-body">
       <div class="field"><label>Prompt</label><div class="prompt-wrap"><textarea id="promptInput" name="prompt" rows="4" placeholder="česky: filmový realistický záběr, pomalý pohyb kamery..."></textarea><button type="button" id="promptClearBtn" class="prompt-clear-btn hidden" aria-label="Smazat prompt" title="Smazat text">×</button></div></div>
@@ -503,7 +510,7 @@ body.app-cs #appLangCsBtn,body.app-en #appLangEnBtn{display:none!important}
       <div class="field"><label>Negative prompt</label><textarea id="negativeInput" name="negative_prompt" rows="3">shaky camera, jitter, stutter, flicker, morphing, warping, distortion, motion smear, motion artifacts, frame blending, temporal artifacts, deformed, disfigured, ugly, low quality, worst quality, blurry, jpeg artifacts, watermark, text overlay, logo, transition, frozen frame</textarea></div>
     </div>
   </section>
-  <section class="acc open" data-key="motion">
+  <section class="acc open closed" data-key="motion">
     <button type="button" class="acc-head" onclick="toggleAcc(this)"><span>03 Kamera a styl</span><b>▾</b></button>
     <div class="acc-body">
       <div class="grid3 tight"><div class="field"><label>Pohyb kamery — preset</label><select id="preset" name="preset"><option>Decentní nájezd dopředu</option><option>Pomalý nájezd dopředu</option><option>Pomalý odjezd dozadu</option><option>Obíhání kolem objektu</option><option>Půlkruhový oblouk</option><option>Stoupání kamery (dron nahoru)</option><option>Klesání kamery (pohled dolů)</option><option>Jeřáb nahoru</option><option>Jeřáb dolů</option><option>Pomalý posun do strany</option><option selected>Statická kamera (stativ)</option><option>Jemný posun (drobný drift)</option><option>Z ruky (dokumentární)</option><option>Vlastní</option></select></div><div class="field"><label>Style preset</label><select id="style" name="style"><option value="None">None</option><option>Cinematic</option><option>Realistic</option><option>Documentary / News</option><option>Fashion / Product</option><option>Music video</option></select></div><div class="field"><label>Rozlišení preset</label><select id="format"><option value="auto_fhd" selected>Auto podle fotky · FHD limit</option><option value="fhd_landscape">FHD horizontal · 1920×1080</option><option value="fhd_portrait">FHD vertical · 1080×1920</option><option value="classic_4_3">4:3 · 1440×1080</option><option value="classic_3_4">3:4 · 1080×1440</option><option value="hd_landscape">HD horizontal · 1280×720</option><option value="hd_portrait">HD vertical · 720×1280</option><option value="square">Square · 1024×1024</option><option value="square_2000">Square XL · 2000×2000</option><option value="custom">Custom</option></select></div></div>
@@ -511,11 +518,11 @@ body.app-cs #appLangCsBtn,body.app-en #appLangEnBtn{display:none!important}
       <div class="field"><label>Style</label><input id="styleText" value=""></div>
     </div>
   </section>
-  <section class="acc open" data-key="format">
+  <section class="acc open closed" data-key="format">
     <button type="button" class="acc-head" onclick="toggleAcc(this)"><span>04 Video parametry</span><b>▾</b></button>
     <div class="acc-body"><div class="grid2 compact"><div class="field"><label>Šířka</label><input id="width" type="number" value="1920" min="256" max="4096" step="8"></div><div class="field"><label>Výška</label><input id="height" type="number" value="1080" min="256" max="4096" step="8"></div></div><div class="grid3 compact"><div class="field"><label>FPS</label><select id="fps"><option>24</option><option selected>25</option><option>30</option><option>50</option></select></div><div class="field"><label>Délka s</label><input id="duration" type="number" value="5" min="1" max="60" step="0.5"></div><div class="field"><label>Seed</label><input id="seed" placeholder="random"></div></div><div class="seed-row compact"><div class="field"><label>Režim seedu</label><select id="seedMode"><option value="increment_batch" selected>Batch: navyšovat seed</option><option value="locked">Zamknout stejný seed</option><option value="random_each">Náhodný pro každý obrázek</option></select></div><div class="field"><label>&nbsp;</label><button class="btn ghost" type="button" onclick="freshSeed();updateMobSummary()">Nový seed</button></div></div></div>
   </section>
-  <section class="acc open" data-key="advanced">
+  <section class="acc open closed" data-key="advanced">
     <button type="button" class="acc-head" onclick="toggleAcc(this)"><span>05 Pokročilé řízení</span><b>▾</b></button>
     <div class="acc-body">
       <div class="grid3 sliders"><div class="field range-field"><label class="range-label"><span>Kroky výpočtu</span><span class="range-value" id="stepsVal">30</span></label><input id="steps" type="range" value="30" min="10" max="50" step="1"><div class="range-scale"><span>rychlejší</span><span>čistší</span></div><div class="range-help">Více kroků = čistší výsledek, ale delší generování.</div></div><div class="field range-field"><label class="range-label"><span>Držení promptu</span><span class="range-value" id="cfgVal">3,5</span></label><input id="cfg" type="range" value="3.5" min="1" max="6" step="0.1"><div class="range-scale"><span>volnější</span><span>přesnější</span></div><div class="range-help">Jak silně se model drží textu.</div></div><div class="field range-field"><label class="range-label"><span>Síla pohybu</span><span class="range-value" id="motionVal">0,75</span></label><input id="motion" type="range" value="0.75" min="0.2" max="1.2" step="0.05"><div class="range-scale"><span>stabilní</span><span>živé</span></div><div class="range-help">Nižší hodnota stabilnější, vyšší víc pohybu.</div></div></div>
@@ -530,7 +537,7 @@ body.app-cs #appLangCsBtn,body.app-en #appLangEnBtn{display:none!important}
       </div>
     </div>
   </section>
-  <section class="acc open" data-key="send">
+  <section class="acc open closed" data-key="send">
     <button type="button" class="acc-head" onclick="toggleAcc(this)"><span>06 Odeslání</span><b>▾</b></button>
     <div class="acc-body"><div class="worker-download-card"><div><b>💻 FTP worker režim</b><div class="small">Zůstává PHP fronta a worker. Na PC s ComfyUI spusť stažený worker.</div></div><div class="w-actions"><a class="btn blue" href="download_worker.php">Stáhnout worker ZIP</a></div></div><div class="field"><label>Odeslat na počítač</label><div class="worker-picker" id="workerPicker"><button type="button" class="worker-btn w-active" data-wid="any" onclick="pickWorker('any')" id="wbtn-any"><span class="wdot w-offline" id="wdot-any"></span><span><div class="wlabel">⚡ Jakýkoli</div><div class="wcard-info" id="winfo-any">čekám na workery…</div></span></button></div></div></div>
   </section>
