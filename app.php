@@ -122,14 +122,14 @@ button{user-select:none}
 .mobile-mask{display:none}
 
 /* ---------- Top bar ---------- */
-.top{min-height:62px;display:flex;flex-wrap:nowrap;align-items:center;gap:8px 10px;padding:9px 16px;
+.top{min-height:62px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:9px 16px;
   border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:6;
   background:rgba(10,12,22,.7);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
 .hamb{display:none}
-.top-left{display:flex;align-items:center;gap:10px;flex:0 0 auto;min-width:0}
+.top-left{display:flex;align-items:center;gap:10px;flex:1 1 100%;order:1;min-width:0}
 .top-title{font-family:var(--display);font-weight:600;letter-spacing:.01em;white-space:nowrap;font-size:14px}
-.top-status{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;flex:1 1 auto;min-width:0}
-.top-actions{display:flex;align-items:center;gap:8px;justify-content:flex-end;flex:0 0 auto;margin-left:auto}
+.top-status{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;flex:1 1 100%;order:2;min-width:0}
+.top-actions{display:flex;align-items:center;gap:8px;justify-content:flex-start;flex:1 1 100%;order:3;margin-left:0}
 .stats{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .stats .chip{display:inline-flex}
 .worker-top{white-space:nowrap}
@@ -459,7 +459,7 @@ body.app-cs #appLangCsBtn,body.app-en #appLangEnBtn{display:none!important}
   .hamb{display:inline-flex}
   .mobile-mask{position:fixed;inset:0;background:rgba(6,8,18,.5);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.2s;z-index:25}
   .mobile-mask.open{opacity:1;pointer-events:auto}
-  .top{padding:9px 12px;flex-wrap:wrap}.top-status{flex-basis:100%;min-width:0;order:3;flex-wrap:wrap}.top-actions{order:2;margin-left:auto;flex-wrap:wrap;gap:6px}
+  .top{padding:9px 12px;flex-wrap:wrap}.top-status{flex-basis:100%;min-width:0;order:2;flex-wrap:wrap}.top-actions{order:3;margin-left:0;flex-wrap:wrap;gap:6px}
   .content{padding:12px}.grid2,.grid3,.grid4,.setup-grid{grid-template-columns:1fr}.image-grid.two{grid-template-columns:1fr}
   .preview,.preview.with-ratio-frame .preview-stage{height:260px}.kv,.detail-grid{grid-template-columns:1fr}
 }
