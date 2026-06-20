@@ -468,10 +468,12 @@ body.app-cs #appLangCsBtn,body.app-en #appLangEnBtn{display:none!important}
 .acc[data-key="motion"] .grid3.tight .field label{min-height:28px;display:flex;align-items:flex-end;line-height:1.15;margin-bottom:7px}
 .acc[data-key="motion"] select,.acc[data-key="motion"] input{height:42px;min-height:42px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:1180px){.acc[data-key="motion"] .grid3.tight{grid-template-columns:1fr}}
-/* Horní lišta: stat chipy drží v jedné řádce a na úzkém monitoru se vodorovně posouvají místo ošklivého skládání */
-.stats{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;max-width:100%;-webkit-overflow-scrolling:touch}
-.stats::-webkit-scrollbar{display:none}
-.stats .chip{flex:0 0 auto}
+/* Horní lišta: stat chipy drží v jedné řádce, vodorovný posuvník, hranaté kompaktní chipy ať se vejdou */
+.stats{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-width:100%;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:thin;scrollbar-color:var(--bd-2) transparent}
+.stats::-webkit-scrollbar{height:6px}
+.stats::-webkit-scrollbar-track{background:transparent}
+.stats::-webkit-scrollbar-thumb{background:var(--bd-2);border-radius:3px}
+.stats .chip{flex:0 0 auto;border-radius:6px;padding:5px 9px}
 /* Detail jobu: akční tlačítka se na úzkém okně zalomí, ať se nic neuřízne */
 .panel-head{flex-wrap:wrap;row-gap:8px}
 @media(max-width:900px){.panel-head .btn{flex:1 1 auto;min-width:calc(50% - 5px)}}
