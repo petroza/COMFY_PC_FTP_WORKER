@@ -474,6 +474,7 @@ body.app-cs #appLangCsBtn,body.app-en #appLangEnBtn{display:none!important}
 .stats::-webkit-scrollbar-track{background:transparent}
 .stats::-webkit-scrollbar-thumb{background:var(--bd-2);border-radius:3px}
 .stats .chip{flex:0 0 auto;border-radius:6px;padding:5px 9px}
+.top-actions .btn{border-radius:6px}
 /* Detail jobu: akční tlačítka se na úzkém okně zalomí, ať se nic neuřízne */
 .panel-head{flex-wrap:wrap;row-gap:8px}
 @media(max-width:900px){.panel-head .btn{flex:1 1 auto;min-width:calc(50% - 5px)}}
