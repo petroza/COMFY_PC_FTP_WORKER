@@ -702,6 +702,8 @@ function adaptFormToProject(p){
   const tokEl=$('enhanceTokens');const tokField=tokEl?(tokEl.closest('.range-field')||tokEl.closest('.field')):null;if(tokField)tokField.style.display=pe?'none':'';
   const subBtn=document.querySelector('button[type="submit"].btn.primary');
   if(subBtn)subBtn.textContent=pe?ui('GENEROVAT OBRÁZEK','GENERATE IMAGE'):ui('GENEROVAT VIDEO','GENERATE VIDEO');
+  const nvBtn=$('newVideoBtn');
+  if(nvBtn)nvBtn.textContent=pe?ui('+ Nový obrázek','+ New image'):ui('+ Nové video','+ New video');
   const stepsHintEl=$('steps');if(pe&&stepsHintEl&&+stepsHintEl.value>30)stepsHintEl.value=20;
   // PHOTO EDIT: video negative ("shaky camera, jitter…") u fotky nedává smysl.
   // Při přepnutí na photo edit výchozí video negative vyprázdníme, při návratu vrátíme.
@@ -739,7 +741,7 @@ function translateTextNodesExact(){
   document.querySelectorAll('#imgPreview.empty-preview,#imgPreview2.empty-preview').forEach(box=>{if(box.id==='imgPreview')box.innerHTML=imageEmptyPlaceholder();else box.innerHTML=image2EmptyPlaceholder();});
 }
 function translateStaticText(){
-  setNodeText('newVideoBtn','+ Nové video','+ New video');setNodeText('diagBtn','Diagnostika','Diagnostics');setNodeText('selectAllBtn','Vybrat vše','Select all');setNodeText('selectFinishedBtn','Označit hotové','Select finished');setNodeText('clearSelectionBtn','Zrušit výběr','Clear selection');setNodeText('downloadSelectedBtn','Stáhnout označené','Download selected');setNodeText('downloadFinishedBtn','Stáhnout hotové','Download finished');setNodeText('deleteSelectedBtn','Smazat označené','Delete selected');setNodeText('clearFinishedBtn','Smazat hotové','Delete finished');
+  (function(){var pe=(typeof isCurrentPhotoEdit==='function'&&isCurrentPhotoEdit());setNodeText('newVideoBtn',pe?'+ Nový obrázek':'+ Nové video',pe?'+ New image':'+ New video');})();setNodeText('diagBtn','Diagnostika','Diagnostics');setNodeText('selectAllBtn','Vybrat vše','Select all');setNodeText('selectFinishedBtn','Označit hotové','Select finished');setNodeText('clearSelectionBtn','Zrušit výběr','Clear selection');setNodeText('downloadSelectedBtn','Stáhnout označené','Download selected');setNodeText('downloadFinishedBtn','Stáhnout hotové','Download finished');setNodeText('deleteSelectedBtn','Smazat označené','Delete selected');setNodeText('clearFinishedBtn','Smazat hotové','Delete finished');
   setNodeText('formTitle',isCurrentTwoPict()?ui('Nový LTX first/last-frame job','New LTX first/last-frame job'):ui('Nový LTX image‑to‑video job','New LTX image-to-video job'),isCurrentTwoPict()?'New LTX first/last-frame job':'New LTX image-to-video job');
   const dt=$('detailTitle');if(dt&&(/^Detail jobu$|^Job detail$/.test(dt.textContent)))dt.textContent=ui('Detail jobu','Job detail');
   const theme=$('themeToggle');if(theme){const m=theme.querySelector('.moon'),s=theme.querySelector('.sun');if(m)m.textContent=ui('Světlý režim','Light mode');if(s)s.textContent=ui('Tmavý režim','Dark mode')}
