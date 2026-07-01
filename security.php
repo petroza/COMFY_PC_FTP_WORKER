@@ -69,8 +69,9 @@ function verdict_for_probe(string $path, array $r): array {
     $code = (int)$r['code'];
     $body = (string)$r['body'];
     $bad = false;
-    if (in_array($code, [401,403,404,405], true)) return ['OK', 'Blokováno HTTP ' . $code];
-    if ($path === 'db.sqlite' && str_starts_with($body, 'SQLite format')) $bad = true;
+    if (in_array($code, [401,403,404,405,410], true)) return ['OK', 'Blokováno HTTP ' . $code];
+    if (in_array($path, ['db.sqlite','db.sqlite-wal','db.sqlite-shm'], true) && (str_starts_with($body, 'SQLite format') || strlen($body) > 0)) $bad = true;
+    if ($path === 'install.php' && $code === 200 && !str_contains($body, 'Instalace už proběhla')) $bad = true;
     if (str_contains($body, 'LOGIN_PASSWORD_HASH') || str_contains($body, 'WORKER_TOKEN_PEPPER')) $bad = true;
     if ($path === 'uploads/' && $code === 200) $bad = true;
     if ($path === 'outputs/' && $code === 200) $bad = true;
@@ -80,7 +81,7 @@ function verdict_for_probe(string $path, array $r): array {
     return ['OK', 'Neobsahuje citlivý obsah / HTTP ' . $code];
 }
 $base = sec_base_url();
-$tests = ['config.php', 'db.sqlite', 'uploads/', 'outputs/', 'cache/', 'tmp/', 'README.md'];
+$tests = ['config.php', 'db.sqlite', 'db.sqlite-wal', 'db.sqlite-shm', 'install.php', 'uploads/', 'outputs/', 'cache/', 'tmp/', 'README.md'];
 $probes = [];
 foreach ($tests as $p) {
     $urlPath = implode('/', array_map('rawurlencode', explode('/', trim($p, '/'))));

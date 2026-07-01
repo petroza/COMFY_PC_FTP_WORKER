@@ -61,7 +61,7 @@ if (!$admin) { // zobraz login — i pokud má session bez admin práv
 </head><body><div class="box">
 <div class="logo">&#9881; PZ COMFY ADMIN</div>
 <form method="post">
-<div class="field"><label>Uživatelské jméno</label><input name="username" autocomplete="username" value="" required></div>
+<div class="field"><label>Uživatelské jméno</label><input name="username" autocomplete="username" value="admin" required></div>
 <div class="field"><label>Heslo</label><input name="password" type="password" autofocus autocomplete="current-password" required></div>
 <button class="btn">Přihlásit se do adminu</button>
 <?php if($loginError):?><div class="err"><?=htmlspecialchars($loginError)?></div><?php endif;?>

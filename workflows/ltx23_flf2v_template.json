@@ -1,7 +1,7 @@
 {
   "31": {
     "inputs": {
-      "image": "first_frame.png"
+      "image": "high_view_classic_car.png"
     },
     "class_type": "LoadImage",
     "_meta": {
@@ -10,7 +10,7 @@
   },
   "39": {
     "inputs": {
-      "image": "last_frame.png"
+      "image": "low_view_classic_car.png"
     },
     "class_type": "LoadImage",
     "_meta": {
@@ -483,7 +483,7 @@
   },
   "129:128": {
     "inputs": {
-      "text": "",
+      "text": "The camera move from a high position to a low position, keeping the character in the frame centered.\nMusic: Synthwave cyberpunk music with calm ambient synths and driving 80s beats.",
       "clip": [
         "129:103",
         0

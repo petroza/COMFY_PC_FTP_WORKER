@@ -180,7 +180,7 @@ function current_username(): string { return trim((string)($_SESSION['username']
 function worker_token_only(): bool { return token_ok() && !is_logged(); }
 function master_admin_session(): bool { return is_admin_session() && current_user_id() === null && current_username() === ''; }
 function global_job_access(): bool {
-    // Worker vidí vše kvůli frontě. Admin účet vidí vše v aplikaci i adminu.
+    // Worker vidí vše kvůli frontě. Admin účet admin vidí vše v aplikaci i adminu.
     return worker_token_only() || is_admin_session();
 }
 function can_access_job(array $job): bool {

@@ -37,13 +37,13 @@ SCRIPT_DIR    = Path(__file__).parent
 TMP_DIR       = SCRIPT_DIR / "tmp_worker"
 TMP_DIR.mkdir(exist_ok=True)
 
-API_BASE      = os.environ.get("PZ_COMFY_API", "https://example.com/comfy/api.php")
+API_BASE      = os.environ.get("PZ_COMFY_API", "https://www.petrzavorka.cz/comfy/api.php")
 API_TOKEN     = os.environ.get("PZ_COMFY_TOKEN", "")
 COMFY_BASE    = os.environ.get("COMFY_BASE", "http://127.0.0.1:8000")
 COMFY_START_CMD = os.environ.get("PZ_COMFY_START_CMD", "").strip()
 COMFY_START_CWD = os.environ.get("PZ_COMFY_START_CWD", "").strip()
-# Výchozí cesta k instalaci ComfyUI. Reálně se přepíše v START_WORKER.bat přes PZ_COMFY_EXE.
-COMFY_EXE_PATH = os.environ.get("PZ_COMFY_EXE", r"%LOCALAPPDATA%\Programs\ComfyUI\ComfyUI.exe").strip()
+# Pevná cesta k instalaci ComfyUI na Petrovu PC. Dá se přepsat v START_WORKER.bat přes PZ_COMFY_EXE.
+COMFY_EXE_PATH = os.environ.get("PZ_COMFY_EXE", r"C:\Users\Petr\AppData\Local\Programs\ComfyUI\ComfyUI.exe").strip()
 # Dočasná ochrana proti chybě ComfyUI ModelMMAP/get_file_handle u nových buildů.
 # Když worker ComfyUI spouští sám, přidá tento parametr. Když ComfyUI běží ručně, je nutné ho restartovat stejně.
 COMFY_EXTRA_ARGS = os.environ.get("PZ_COMFY_EXTRA_ARGS", "--disable-mmap --disable-dynamic-vram").strip()
@@ -59,7 +59,7 @@ def default_workflow_url() -> str:
     base = API_BASE.split("?", 1)[0].rstrip()
     if base.endswith("/api.php"):
         return base + "?action=default_workflow"
-    return "https://example.com/comfy/api.php?action=default_workflow"
+    return "https://www.petrzavorka.cz/comfy/api.php?action=default_workflow"
 
 
 # Hlavní novinka: workflow může být centrálně na webu/FTP.
@@ -69,10 +69,10 @@ WORKFLOW_URL  = os.environ.get("PZ_COMFY_WORKFLOW_URL", default_workflow_url()).
 
 
 def resolve_workflow_path() -> str:
-    """Lokální fallback. Priorita: env var, výchozí domácí cesta, workflow v balíčku."""
+    """Lokální fallback. Priorita: env var, Petrova domácí cesta, workflow v balíčku."""
     candidates = [
         os.environ.get("PZ_COMFY_WORKFLOW"),
-        os.path.expandvars(r"%USERPROFILE%\Documents\ComfyUI\workflows\ltx23_i2v_template.json"),
+        r"C:\Users\Petr\Documents\ComfyUI\workflows\ltx23_i2v_template.json",
         str(SCRIPT_DIR / "workflows" / "ltx23_i2v_template.json.json"),
         str(SCRIPT_DIR / "workflows" / "ltx23_i2v_template.json"),
     ]
@@ -207,6 +207,7 @@ def _common_comfy_start_scripts() -> List[Path]:
         SCRIPT_DIR / "start_comfy.bat",
         Path(os.path.expandvars(COMFY_EXE_PATH)) if COMFY_EXE_PATH else Path("__disabled_old_comfy_exe__"),
         Path(os.environ.get("LOCALAPPDATA", "")) / "Programs" / "ComfyUI" / "ComfyUI.exe",
+        Path(r"C:\Users\Petr\AppData\Local\Programs\ComfyUI\ComfyUI.exe"),
         home / "Documents" / "ComfyUI" / "run_nvidia_gpu.bat",
         home / "Documents" / "ComfyUI" / "run.bat",
         home / "Desktop" / "ComfyUI" / "run_nvidia_gpu.bat",

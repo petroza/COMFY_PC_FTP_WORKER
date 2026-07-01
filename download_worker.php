@@ -23,7 +23,7 @@ function pz_scheme(): string {
     return (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 }
 function pz_base_url(): string {
-    $host = $_SERVER['HTTP_HOST'] ?? 'example.com';
+    $host = $_SERVER['HTTP_HOST'] ?? 'www.petrzavorka.cz';
     $script = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '/comfy/download_worker.php');
     $dir = rtrim(dirname($script), '/');
     return pz_scheme() . '://' . $host . ($dir === '' || $dir === '.' ? '' : $dir);
@@ -163,9 +163,9 @@ Postup:
 3) Spusť START_WORKER.bat. V hlavní složce zůstává jen spouštěč, vše ostatní je ve _worker/.
 
 Co je opraveno:
-- START_COMFY.bat už nespouští staré %LOCALAPPDATA%\Programs\ComfyUI\ComfyUI.exe.
+- START_COMFY.bat už nespouští staré C:\Users\Petr\AppData\Local\Programs\ComfyUI\ComfyUI.exe.
 - Spouští přímo nový Comfy Desktop backend:
-  %USERPROFILE%\Documents\ComfyUI\.venv\Scripts\python.exe -s ComfyUI\main.py
+  C:\Users\Petr\Documents\ComfyUI\.venv\Scripts\python.exe -s ComfyUI\main.py
 - Používá stejný base/user/input/output/model paths jako Comfy Desktop log.
 - Přidává --disable-mmap a --disable-dynamic-vram.
 - Před startem ukončí procesy, které drží port 8000 nebo comfyui.db.
@@ -191,14 +191,14 @@ REM  Nespousti stare ComfyUI.exe.
 REM  Spousti primo Comfy Desktop backend main.py.
 REM ============================================================
 
-set "PYTHON_EXE=%USERPROFILE%\Documents\ComfyUI\.venv\Scripts\python.exe"
-set "COMFY_ROOT=%USERPROFILE%\ComfyUI-Installs\ComfyUI"
-set "BASE_DIR=%USERPROFILE%\Documents\ComfyUI"
-set "USER_DIR=%USERPROFILE%\Documents\ComfyUI\user"
-set "DB_URL=sqlite:///%USERPROFILE%\Documents\ComfyUI\user\comfyui.db"
-set "MODEL_PATHS=%USERPROFILE%\AppData\Roaming\Comfy Desktop\shared_model_paths.yaml"
-set "INPUT_DIR=%USERPROFILE%\Documents\ComfyUI\input"
-set "OUTPUT_DIR=%USERPROFILE%\Documents\ComfyUI\output"
+set "PYTHON_EXE=C:\Users\Petr\Documents\ComfyUI\.venv\Scripts\python.exe"
+set "COMFY_ROOT=C:\Users\Petr\ComfyUI-Installs\ComfyUI"
+set "BASE_DIR=C:\Users\Petr\Documents\ComfyUI"
+set "USER_DIR=C:\Users\Petr\Documents\ComfyUI\user"
+set "DB_URL=sqlite:///C:\Users\Petr\Documents\ComfyUI\user\comfyui.db"
+set "MODEL_PATHS=C:\Users\Petr\AppData\Roaming\Comfy Desktop\shared_model_paths.yaml"
+set "INPUT_DIR=C:\Users\Petr\Documents\ComfyUI\input"
+set "OUTPUT_DIR=C:\Users\Petr\Documents\ComfyUI\output"
 set "LOG=%USERPROFILE%\Desktop\PZ_WORKER_COMFY_START_LOG.txt"
 
 echo ============================================================ > "%LOG%"
@@ -268,8 +268,8 @@ setlocal EnableExtensions
 chcp 65001 >nul
 title PZ REPAIR COMFY REQUIREMENTS
 
-set "PYTHON_EXE=%USERPROFILE%\Documents\ComfyUI\.venv\Scripts\python.exe"
-set "REQ=%USERPROFILE%\ComfyUI-Installs\ComfyUI\ComfyUI\requirements.txt"
+set "PYTHON_EXE=C:\Users\Petr\Documents\ComfyUI\.venv\Scripts\python.exe"
+set "REQ=C:\Users\Petr\ComfyUI-Installs\ComfyUI\ComfyUI\requirements.txt"
 set "LOG=%USERPROFILE%\Desktop\PZ_COMFY_REPAIR_REQUIREMENTS_LOG.txt"
 
 echo ============================================================ > "%LOG%"

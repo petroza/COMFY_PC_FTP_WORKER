@@ -14,29 +14,17 @@ if (!function_exists('mb_strtolower')) {
 }
 
 // ============================================================
-//  PZ COMFY VIDEO REMOTE — bezpečná konfigurace (VZOROVÝ SOUBOR)
-//
-//  POUŽITÍ:
-//  1) Zkopíruj tento soubor jako config.php (config.php NIKDY necommituj).
-//  2) Vyplň LOGIN_USERNAME, LOGIN_PASSWORD_HASH a WORKER_TOKEN_PEPPER níže.
-//  3) Soubor config.php musí být na serveru blokovaný přes .htaccess
-//     (přibalený .htaccess to už dělá).
+//  PZ COMFY VIDEO REMOTE — bezpečná konfigurace
+//  POZOR: tento soubor musí být blokovaný přes .htaccess.
 // ============================================================
 
-// Přihlášení: heslo není uložené v plaintextu, jen jako bcrypt hash.
-// Hash svého hesla vygeneruješ příkazem:
-//   php -r "echo password_hash('TvojeNoveHeslo', PASSWORD_BCRYPT, ['cost' => 12]);"
-// Výsledek (začíná $2y$12$...) vlož místo prázdného řetězce níže.
-// Dokud je hash prázdný, nejde se přihlásit.
+// Přihlášení: heslo není uložené v plaintextu, jen jako hash.
 define('LOGIN_USERNAME', 'admin');
 define('LOGIN_PASSWORD_HASH', '');
 define('DISABLE_LEGACY_MASTER_LOGIN', true);
 
 // Worker tokeny: každý stažený worker ZIP dostane vlastní token.
 // Na serveru se ukládá jen HMAC hash tokenu, nikdy plaintext.
-// PEPPER je tajná sůl pro HMAC — vygeneruj si vlastní náhodný řetězec:
-//   php -r "echo 'pzpep_' . rtrim(strtr(base64_encode(random_bytes(48)), '+/', '-_'), '=');"
-// POZOR: po změně pepperu přestanou platit všechny dříve vydané worker tokeny.
 define('WORKER_TOKEN_PEPPER', 'pzpep_DOPLN_VLASTNI_NAHODNY_RETEZEC');
 define('WORKER_TOKEN_PREFIX', 'pzwrk_');
 define('WORKER_TOKEN_DEFAULT_TTL_DAYS', 180);

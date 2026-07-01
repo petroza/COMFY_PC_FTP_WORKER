@@ -52,7 +52,7 @@
         }
       },
       "widgets_values": [
-        "last_frame.png",
+        "low_view_classic_car.png",
         "image"
       ]
     },
@@ -149,7 +149,7 @@
         }
       },
       "widgets_values": [
-        "first_frame.png",
+        "high_view_classic_car.png",
         "image"
       ]
     },
@@ -2403,7 +2403,7 @@
               "secondTabWidth": 65
             },
             "widgets_values": [
-              ""
+              "The camera move from a high position to a low position, keeping the character in the frame centered.\nMusic: Synthwave cyberpunk music with calm ambient synths and driving 80s beats."
             ],
             "color": "#232",
             "bgcolor": "#353"

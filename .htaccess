@@ -1,8 +1,8 @@
 Options -Indexes
 DirectoryIndex index.html index.php comfy.php
 
-# Chraň konfigy, databázi, tokeny, dokumentaci, skripty a dočasné soubory.
-<FilesMatch "^(config\.php|db\.sqlite|README.*|NASADIT.*|.*\.(sqlite|db|ini|env|py|pyc|bat|cmd|ps1|log|lock|bak|old|tmp|txt|md|json|zip))$">
+# Chraň konfigy, databázi, WAL/SHM, tokeny, dokumentaci, workflow JSONy, skripty a archivy.
+<FilesMatch "^(config\.php|db\.sqlite(?:-wal|-shm)?|install\.lock|README.*|NASADIT.*|NEPREPISUJE.*|PACKAGE_MANIFEST.*|UPDATE_.*|.*\.(sqlite|sqlite-wal|sqlite-shm|db|ini|env|py|pyc|bat|cmd|ps1|sh|log|lock|bak|old|tmp|txt|md|json|zip))$">
     <IfModule mod_authz_core.c>
         Require all denied
     </IfModule>
