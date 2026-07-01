@@ -42,7 +42,7 @@ API_TOKEN     = os.environ.get("PZ_COMFY_TOKEN", "")
 COMFY_BASE    = os.environ.get("COMFY_BASE", "http://127.0.0.1:8000")
 COMFY_START_CMD = os.environ.get("PZ_COMFY_START_CMD", "").strip()
 COMFY_START_CWD = os.environ.get("PZ_COMFY_START_CWD", "").strip()
-# Pevná cesta k instalaci ComfyUI na Petrovu PC. Dá se přepsat v START_WORKER.bat přes PZ_COMFY_EXE.
+# Pevná cesta k instalaci ComfyUI na USERNAMEovu PC. Dá se přepsat v START_WORKER.bat přes PZ_COMFY_EXE.
 COMFY_EXE_PATH = os.environ.get("PZ_COMFY_EXE", r"C:\Users\USERNAME\AppData\Local\Programs\ComfyUI\ComfyUI.exe").strip()
 # Dočasná ochrana proti chybě ComfyUI ModelMMAP/get_file_handle u nových buildů.
 # Když worker ComfyUI spouští sám, přidá tento parametr. Když ComfyUI běží ručně, je nutné ho restartovat stejně.
@@ -69,7 +69,7 @@ WORKFLOW_URL  = os.environ.get("PZ_COMFY_WORKFLOW_URL", default_workflow_url()).
 
 
 def resolve_workflow_path() -> str:
-    """Lokální fallback. Priorita: env var, Petrova domácí cesta, workflow v balíčku."""
+    """Lokální fallback. Priorita: env var, USERNAMEova domácí cesta, workflow v balíčku."""
     candidates = [
         os.environ.get("PZ_COMFY_WORKFLOW"),
         r"C:\Users\USERNAME\Documents\ComfyUI\workflows\ltx23_i2v_template.json",
