@@ -31,5 +31,6 @@ if not errorlevel 1 (
   )
 )
 
-php -S 127.0.0.1:8788 -t .
+REM Bind na 0.0.0.0, aby web byl dostupny i z ostatnich stroju v siti.
+php -S 0.0.0.0:8788 -t .
 pause
